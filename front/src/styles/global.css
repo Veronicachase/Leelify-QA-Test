@@ -1,0 +1,75 @@
+.game-buttons,
+.btns {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.submit-button,
+.next-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: clamp(13px, 3vw, 16px);
+}
+
+.submit-button {
+  background-color: var(--color-primary);
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.next-button {
+  background-color: grey;
+}
+
+.audio {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.audio-button {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.audio-button img {
+  width: 34px;
+  height: 34px;
+}
+
+.audio-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: auto;
+  z-index: 20;
+  transform: translate(-50%) translateY(4px);
+  padding: 6px 10px;
+  border-radius: 8px;
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    visibility 0.3s;
+}
+.audio:hover .audio-tooltip,
+.audio:focus-within .audio-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%) translateY(0);
+}

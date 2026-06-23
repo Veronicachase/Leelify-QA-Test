@@ -1,0 +1,137 @@
+/* 
+notas para probar en móviles
+iPhone SE / iPhone 6/7/8 → pequeño, prueba exigente
+Pixel 3 / Pixel 5 → Android común
+iPhone XR / iPhone 12/13/14 → móvil moderno más alto
+Galaxy S8 / S9+ → Android alto y estrecho
+
+*/
+
+.game-layout {
+  min-height: 100dvh;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #f7f7f7;
+  overflow-x: hidden;
+  align-items: center;
+}
+
+.game-container {
+  width: 100%;
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-menu {
+  width: 100%;
+  height: 10%;
+  color: var(--color-text-soft);
+  background: var(--background-title-yellow-linear);
+  text-align: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-level {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.level-list {
+  display: flex;
+  gap: 15px;
+  padding: 0;
+  margin: 0 0 20px;
+  list-style: none;
+}
+
+.level-list li {
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  color: white;
+  list-style: none;
+}
+
+.active {
+  background-color: var(--color-primary);
+}
+
+.not-active-or-completed {
+  background-color: var(--color-text-soft);
+}
+
+.game-content {
+  width: 100%;
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  overflow-x: hidden;
+}
+
+.game-content > * {
+  width: 100%;
+  max-width: 100%;
+}
+
+.game-footer {
+  width: 100%;
+  margin-top: auto;
+
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+
+  padding: 16px 0 22px;
+}
+
+.game-footer li {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--color-text-soft);
+  list-style: none;
+}
+
+.game-footer li img {
+  width: 30px;
+  height: 30px;
+}
+@media (min-width: 768px) and (orientation: landscape) {
+  .game-container {
+    width: 100%;
+    max-width: 1000px;
+    border: none;
+  }
+
+  .game-content {
+    width: 100%;
+  }
+}
+
+/* corregir en versiones grandes, y eliminar el box shadow derecho*/

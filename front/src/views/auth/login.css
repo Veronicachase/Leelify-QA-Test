@@ -1,0 +1,156 @@
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(180deg, #f9fff8 0%, #eef8f2 100%);
+}
+
+.login-container {
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-md);
+  border-radius: 20px;
+  padding: 30px 24px;
+  border: var(--border-1);
+  transition: 0.3s ease;
+}
+
+.login-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 90%;
+  padding: 10px;
+  gap: 20px;
+}
+
+.bunny-celebrando {
+  width: 72px;
+  height: auto;
+}
+
+.div-encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+input,
+.submit-button {
+  width: 100%;
+  padding: 15px 10px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+input {
+  background-color: var(--color-bg);
+  border: 1px solid transparent;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+input:hover,
+.submit-button:hover {
+  transform: scale(1.02);
+}
+
+input:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+.submit-button {
+  background: var(--background-green-linear);
+  color: var(--color-white);
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition-fast);
+  margin-bottom: 20px;
+  margin-top: 10px;
+  box-shadow: var(--shadow-sm);
+}
+
+.submit-button:active {
+  background: var(--background-green-backwards-linear);
+}
+
+h1,
+p {
+  color: var(--color-text-soft);
+  text-align: center;
+  margin: 0;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.eye-icon img {
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+  transition: 0.2s ease;
+}
+
+.eye-icon img:hover {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+.small {
+  font-size: 0.9rem;
+  margin-top: 14px;
+}
+
+.small a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.small a:hover {
+  text-decoration: underline;
+}
+/* ---------------keyframes-------------------------
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}*/

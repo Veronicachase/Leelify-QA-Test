@@ -1,0 +1,162 @@
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import "../../styles/global.css";
+import "../../styles/orderingGame.css";
+import { images, correctOrder } from "../../utils/ordering-Game-Images";
+import { BtnsSection } from "../../components/common/btns";
+import downloadIcon from "../../assets/icons/downloandIcon.svg";
+import type { LayoutContextType } from "../../types/types";
+
+export const OrderingGame = () => {
+  const [origin] = useState(images);
+
+  const [destination, setDestination] = useState<
+    ((typeof images)[number] | null)[]
+  >(Array(6).fill(null));
+
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const [checked, setChecked] = useState(false);
+
+  const { setScore } = useOutletContext<LayoutContextType>();
+  const navigate = useNavigate();
+
+  const audioUrl =
+    "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+
+  const availableImages = origin.filter(
+    (image) => !destination.some((item) => item?.id === image.id),
+  );
+
+  const isBoardFull = availableImages.length === 0;
+
+  const handleClick = () => {
+    const correctOrderCheck = destination.every(
+      (item, index) => item && item.id === correctOrder[index],
+    );
+
+    setChecked(true);
+
+    if (correctOrderCheck) {
+      setScore((prev) => prev + 10);
+    }
+  };
+
+  const handleRepeat = () => {
+    setDestination(Array(6).fill(null));
+    setActiveId(null);
+    setChecked(false);
+  };
+
+  const handleNext = () => {
+    navigate("/game/2");
+  };
+
+  const handleDragStart = (id: string) => {
+    setActiveId(id);
+  };
+
+  const handleDragEnd = () => {
+    setActiveId(null);
+  };
+
+  const handleDrop = (index: number) => {
+    const draggedItem = origin.find((item) => item.id === activeId);
+
+    if (!draggedItem) return;
+
+    setDestination((prev) => {
+      const newDestination = [...prev];
+
+      const previousIndex = newDestination.findIndex(
+        (item) => item?.id === draggedItem.id,
+      );
+
+      if (previousIndex !== -1) {
+        newDestination[previousIndex] = null;
+      }
+
+      newDestination[index] = draggedItem;
+
+      return newDestination;
+    });
+
+    setActiveId(null);
+  };
+
+  return (
+    <main className={`ordering-game ${isBoardFull ? "completed" : ""}`}>
+      <div>
+        <p className="game-instructions">
+          Ordena las imágenes en el orden correcto.
+        </p>
+      </div>
+
+      <div className="game-board">
+        <section className="destination-section">
+          {destination.map((item, index) => (
+            <motion.div
+              key={index}
+              className={`
+                destination-item
+                ${item ? "filled" : "empty"}
+                ${
+                  checked && item
+                    ? item.id === correctOrder[index]
+                      ? "correct"
+                      : "incorrect"
+                    : ""
+                }
+              `}
+              onClick={() => handleDrop(index)}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={() => handleDrop(index)}
+            >
+              {item ? (
+                <img src={item.src} alt={item.name} />
+              ) : (
+                <div className="drop-placeholder">
+                  <img src={downloadIcon} alt="Soltar aquí" />
+                  <span className="image-number">{index + 1}</span>
+                </div>
+              )}
+            </motion.div>
+          ))}
+        </section>
+
+        <hr className="line" />
+
+        {!isBoardFull && (
+          <section className="origin-section">
+            {availableImages.map((item) => (
+              <motion.div
+                key={item.id}
+                className={`origin-item ${
+                  activeId === item.id ? "selected" : ""
+                }`}
+                draggable
+                onClick={() => setActiveId(item.id)}
+                onDragStart={() => handleDragStart(item.id)}
+                onDragEnd={handleDragEnd}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <img src={item.src} alt={item.name} />
+                <span className="image-name">{item.name}</span>
+              </motion.div>
+            ))}
+          </section>
+        )}
+      </div>
+
+      <BtnsSection
+        checked={checked}
+        canSend={isBoardFull}
+        audioUrl={audioUrl}
+        onSend={handleClick}
+        onRepeat={handleRepeat}
+        onNext={handleNext}
+      />
+    </main>
+  );
+};
