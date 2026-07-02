@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { BtnsSection } from "../../components/common/btns";
 import { bestOptionQuestions } from "../../utils/best-opt-questions";
-import { useAudioPlayer } from "../../hooks/useAudioPlayer";
-import audioIcon from "../../assets/icons/audioIcon.svg";
 import "../../styles/global.css";
 import "../../styles/chooseBestOption.css";
+
 const mixRandomQuestions = () => {
   return [...bestOptionQuestions].sort(() => Math.random() - 0.5);
 };
@@ -14,12 +15,9 @@ export const ChooseBestOption = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswerId, setSelectedAnswerId] = useState<string | null>(null);
   const [checked, setChecked] = useState(false);
-
+  const audioUrl = "";
+  const navigate = useNavigate();
   const currentQuestion = questions[currentQuestionIndex];
-
-  const { isPlaying, handleAudioClick } = useAudioPlayer(
-    currentQuestion.audioUrl,
-  );
 
   const handleSelectAnswer = (answerId: string) => {
     if (checked) return;
@@ -34,20 +32,29 @@ export const ChooseBestOption = () => {
   };
 
   const handleRepeat = () => {
-    setSelectedAnswerId(null);
-    setChecked(false);
-  };
-
-  const handleNext = () => {
     const nextQuestionIndex = currentQuestionIndex + 1;
 
     if (nextQuestionIndex < questions.length) {
       setCurrentQuestionIndex(nextQuestionIndex);
       setSelectedAnswerId(null);
       setChecked(false);
+    } else {
+      setCurrentQuestionIndex(0);
+      setSelectedAnswerId(null);
+      setChecked(false);
     }
   };
 
+  const handleNext = () => {
+    const isCorrectAnswer =
+      selectedAnswerId === currentQuestion.correctAnswerId;
+
+    if (checked && isCorrectAnswer) {
+      navigate("/game/4");
+    } else {
+      alert("Debes responder correctamente para pasar al siguiente juego.");
+    }
+  };
   return (
     <main className="choose-best-option">
       <section className="question-card">
@@ -84,53 +91,14 @@ export const ChooseBestOption = () => {
         })}
       </section>
 
-      <section className="btns">
-        {!checked && (
-          <button
-            className="submit-button"
-            type="button"
-            onClick={handleSendAnswer}
-            disabled={selectedAnswerId === null}
-          >
-            Enviar respuesta
-          </button>
-        )}
-
-        <div className="audio">
-          <button
-            type="button"
-            className="audio-button"
-            onClick={handleAudioClick}
-            aria-label={isPlaying ? "Pausar audio" : "Escuchar audio"}
-          >
-            <img src={audioIcon} alt="" />
-          </button>
-
-          <span className="audio-tooltip">
-            {isPlaying ? "Pausar audio" : "Escucha el audio"}
-          </span>
-        </div>
-
-        {checked && (
-          <div className="game-buttons">
-            <motion.button
-              type="button"
-              className="next-button"
-              onClick={handleRepeat}
-            >
-              Repetir
-            </motion.button>
-
-            <motion.button
-              type="button"
-              className="next-button"
-              onClick={handleNext}
-            >
-              Siguiente
-            </motion.button>
-          </div>
-        )}
-      </section>
+      <BtnsSection
+        checked={checked}
+        canSend={selectedAnswerId !== null}
+        audioUrl={audioUrl}
+        onSend={handleSendAnswer}
+        onRepeat={handleRepeat}
+        onNext={handleNext}
+      />
     </main>
   );
 };

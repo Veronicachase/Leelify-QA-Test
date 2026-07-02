@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { imagesQuiz, correctAnswer } from "./../../utils/images-quiz";
-import { BtnsSection } from "../../components/common/btns.js";
+import { ModalGames } from "../../components/common/modalGames.js";
 import { useNavigate } from "react-router-dom";
 import "../../styles/global.css";
 import "../../styles/image-quiz.css";
@@ -43,10 +43,6 @@ export const ImageQuiz = () => {
   const handleSelectImage = (id: string) => {
     if (checked) return;
     setActiveId(id);
-  };
-
-  const handleSendAnswer = () => {
-    if (!activeId) return;
     setChecked(true);
   };
 
@@ -57,6 +53,9 @@ export const ImageQuiz = () => {
   const handleNext = () => {
     navigate("/game/3");
   };
+  const hasWon = checked && activeId === correctAnswer;
+
+  const hasLost = checked && activeId !== null && activeId !== correctAnswer;
 
   return (
     <motion.main className="image-quiz">
@@ -90,11 +89,10 @@ export const ImageQuiz = () => {
         })}
       </div>
 
-      <BtnsSection
-        checked={checked}
-        canSend={activeId !== null}
+      <ModalGames
+        hasWon={hasWon}
+        hasLost={hasLost}
         audioUrl={audioUrl}
-        onSend={handleSendAnswer}
         onRepeat={handleRepeat}
         onNext={handleNext}
       />

@@ -74,6 +74,17 @@ Galaxy S8 / S9+ → Android alto y estrecho
   color: white;
   list-style: none;
 }
+.game-score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 25px;
+  border: var(--border-1);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  background-color: var(--color-surface-soft);
+}
 
 .active {
   background-color: var(--color-primary);

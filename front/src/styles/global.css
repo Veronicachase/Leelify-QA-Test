@@ -16,8 +16,11 @@
   color: white;
   font-size: clamp(13px, 3vw, 16px);
 }
-
 .submit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   background-color: var(--color-primary);
   font-weight: bold;
   letter-spacing: 1px;
@@ -46,6 +49,16 @@
 .audio-button img {
   width: 34px;
   height: 34px;
+  border-radius: 50px;
+  padding: 5px;
+  box-shadow: var(--shadow-md);
+  background-color: var(--color-surface-soft);
+}
+.audio-button img:hover,
+.submit-button :hover,
+.submit-button :active,
+.audio-button img :active {
+  transform: scale(1.05);
 }
 
 .audio-tooltip {

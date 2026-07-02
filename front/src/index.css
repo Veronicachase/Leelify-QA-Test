@@ -6,14 +6,20 @@ body {
 }
 :root {
   --color-primary: #63c7a2;
-  --color-primary-light: #86efac;
+  --color-primary-light: #a1f4bf;
   --color-primary-dark: #16a34a;
   --color-secondary: #06b6d4;
   --color-accent: #facc15;
   --color-accent-soft: #fde68a;
   --color-danger: #ef4444;
   --color-success: #10b981;
-
+  --marron: #b7a8a9;
+  --marron-light: #b7a8a995;
+  --marron-radial: linear-gradient(
+    135deg,
+    var(--marron-light) 0%,
+    var(--marron) 100%
+  );
   /* degradado verde */
 
   --background-title-yellow-linear: linear-gradient(
@@ -34,6 +40,12 @@ body {
     var(--color-primary) 100%
   );
 
+  --conic-border: conic-gradient(
+    var(--color-accent) 0%,
+    var(--color-primary) 40%,
+    var(--color-danger) 70%,
+    var(--color-secondary) 100%
+  );
   /* degradado marrón/rosado suave inspirado en la imagen */
   --background-brown-linear: linear-gradient(
     135deg,

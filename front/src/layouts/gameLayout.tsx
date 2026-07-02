@@ -1,14 +1,14 @@
 import { useState } from "react";
 import "../styles/gameLayout.css";
-import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import type { LayoutContextType } from "../types/types";
 import home from "../assets/icons/home.svg";
 import headphones from "../assets/icons/headphones.svg";
 import profile from "../assets/icons/profile.svg";
+import star from "../assets/icons/star.svg";
 
 export default function GameLayout() {
   const [score, setScore] = useState(0);
-  const navigate = useNavigate();
   const location = useLocation();
   const currentSection = Number(location.pathname.split("/").pop()) || 1;
   const section = [1, 2, 3, 4];
@@ -46,7 +46,9 @@ export default function GameLayout() {
             </ul>
           </div>
 
-          <div className="game-score">Puntos:{score}</div>
+          <div className="game-score">
+            <img src={star} alt="Stars" /> Puntos:{score}
+          </div>
         </div>
 
         <div className="game-content">

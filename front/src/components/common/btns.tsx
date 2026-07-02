@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import audioIcon from "../../assets/icons/audioIcon.svg";
 import { useAudioPlayer } from "../../hooks/useAudioPlayer";
+import sendIcon from "../../assets/icons/sendIcon.svg";
 
 type BtnsSectionProps = {
   checked: boolean;
@@ -30,6 +31,7 @@ export const BtnsSection = ({
           onClick={onSend}
           disabled={!canSend}
         >
+          <img src={sendIcon} alt="" className="send-icon" />
           Enviar respuesta
         </button>
       )}
@@ -59,11 +61,7 @@ export const BtnsSection = ({
             Repetir
           </motion.button>
 
-          <motion.button
-            type="button"
-            className="next-button"
-            onClick={onNext}
-          >
+          <motion.button type="button" className="next-button" onClick={onNext}>
             Siguiente
           </motion.button>
         </div>

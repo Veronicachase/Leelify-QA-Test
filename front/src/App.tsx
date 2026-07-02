@@ -3,6 +3,7 @@ import { OrderingGame } from "./views/games/OrderingGame";
 import GameLayout from "./layouts/gameLayout";
 import { ImageQuiz } from "./views/games/ImageQuiz";
 import { ChooseBestOption } from "./views/games/ChooseBestOption";
+import { MatchingGame } from "./views/games/MatchingGame";
 
 function AppRouter() {
   return (
@@ -15,6 +16,7 @@ function AppRouter() {
           <Route path="1" element={<OrderingGame />} />
           <Route path="2" element={<ImageQuiz />} />
           <Route path="3" element={<ChooseBestOption />} />
+          <Route path="4" element={<MatchingGame />} />
         </Route>
       </Routes>
     </BrowserRouter>

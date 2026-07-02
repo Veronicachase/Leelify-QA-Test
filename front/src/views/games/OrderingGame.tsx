@@ -17,7 +17,6 @@ export const OrderingGame = () => {
 
   const [activeId, setActiveId] = useState<string | null>(null);
   const [checked, setChecked] = useState(false);
-
   const { setScore } = useOutletContext<LayoutContextType>();
   const navigate = useNavigate();
 
