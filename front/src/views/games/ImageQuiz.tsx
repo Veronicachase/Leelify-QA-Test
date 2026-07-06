@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { imagesQuiz, correctAnswer } from "./../../utils/images-quiz";
 import { ModalGames } from "../../components/common/modalGames.js";
 import { useNavigate } from "react-router-dom";
+import { useScore } from "../../context/ScoreContex.js";
 import "../../styles/global.css";
 import "../../styles/image-quiz.css";
 
@@ -25,6 +26,7 @@ const createPlayOptions = () => {
 };
 
 export const ImageQuiz = () => {
+  const { addPointsOnce } = useScore();
   const [activeId, setActiveId] = useState<string | null>(null);
   const [checked, setChecked] = useState(false);
   const [itemsPerPlay, setItemsPerPlay] = useState(() => createPlayOptions());
@@ -51,6 +53,7 @@ export const ImageQuiz = () => {
   };
 
   const handleNext = () => {
+    addPointsOnce("game-2", 5);
     navigate("/game/3");
   };
   const hasWon = checked && activeId === correctAnswer;

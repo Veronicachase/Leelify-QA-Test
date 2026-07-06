@@ -1,23 +1,23 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../../styles/global.css";
 import "../../styles/orderingGame.css";
 import { images, correctOrder } from "../../utils/ordering-Game-Images";
 import { BtnsSection } from "../../components/common/btns";
 import downloadIcon from "../../assets/icons/downloandIcon.svg";
-import type { LayoutContextType } from "../../types/types";
+import { useScore } from "../../context/ScoreContex.js";
+import Swal from "sweetalert2";
 
 export const OrderingGame = () => {
+  const { addPointsOnce } = useScore();
   const [origin] = useState(images);
-
   const [destination, setDestination] = useState<
     ((typeof images)[number] | null)[]
   >(Array(6).fill(null));
-
+  const [isCorrectOrder, setIsCorrectOrder] = useState(false);
   const [activeId, setActiveId] = useState<string | null>(null);
   const [checked, setChecked] = useState(false);
-  const { setScore } = useOutletContext<LayoutContextType>();
   const navigate = useNavigate();
 
   const audioUrl =
@@ -34,10 +34,11 @@ export const OrderingGame = () => {
       (item, index) => item && item.id === correctOrder[index],
     );
 
+    setIsCorrectOrder(correctOrderCheck);
     setChecked(true);
 
     if (correctOrderCheck) {
-      setScore((prev) => prev + 10);
+      addPointsOnce("game-1", 5);
     }
   };
 
@@ -45,9 +46,25 @@ export const OrderingGame = () => {
     setDestination(Array(6).fill(null));
     setActiveId(null);
     setChecked(false);
+    setIsCorrectOrder(false);
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
+    if (!isCorrectOrder) {
+      Swal.fire({
+        title: "Aún no puedes avanzar",
+        text: "Debes completar correctamente todos los campos para poder avanzar",
+        icon: "error",
+        confirmButtonText: "Intentar de nuevo",
+      });
+      return;
+    }
+    await Swal.fire({
+      title: "¡Correcto!",
+      text: "Has ganado 5 puntos",
+      icon: "success",
+      confirmButtonText: "Continuar",
+    });
     navigate("/game/2");
   };
 

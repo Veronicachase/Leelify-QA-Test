@@ -1,14 +1,13 @@
-import { useState } from "react";
 import "../styles/gameLayout.css";
 import { Outlet, useLocation } from "react-router-dom";
-import type { LayoutContextType } from "../types/types";
+import { useScore } from "../context/ScoreContex";
 import home from "../assets/icons/home.svg";
 import headphones from "../assets/icons/headphones.svg";
 import profile from "../assets/icons/profile.svg";
 import star from "../assets/icons/star.svg";
 
 export default function GameLayout() {
-  const [score, setScore] = useState(0);
+  const { score } = useScore();
   const location = useLocation();
   const currentSection = Number(location.pathname.split("/").pop()) || 1;
   const section = [1, 2, 3, 4];
@@ -52,7 +51,7 @@ export default function GameLayout() {
         </div>
 
         <div className="game-content">
-          <Outlet context={{ setScore }} />
+          <Outlet />
         </div>
 
         <div>

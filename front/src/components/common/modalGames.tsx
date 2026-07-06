@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import audioIcon from "../../assets/icons/audioIcon.svg";
 import { useAudioPlayer } from "../../hooks/useAudioPlayer";
+import "../../styles/modal-game.css";
 
 type ModalGamesProps = {
   hasWon: boolean;
@@ -29,7 +30,14 @@ export const ModalGames = ({
             <motion.button type="button" className="btn" onClick={onNext}>
               CONTINUAR
             </motion.button>
+          </div>
+        </motion.section>
+      )}
 
+      {hasLost && (
+        <motion.section className="modal">
+          <div className=" modal-border   incorrect">
+            <h3>❌ ¡Incorrecto!</h3>
             <div className="audio">
               <button
                 type="button"
@@ -44,15 +52,6 @@ export const ModalGames = ({
                 {isPlaying ? "Pausar audio" : "Escucha el audio"}
               </span>
             </div>
-          </div>
-        </motion.section>
-      )}
-
-      {hasLost && (
-        <motion.section className="modal">
-          <div className=" modal-border   incorrect">
-            <h3>❌ ¡Incorrecto!</h3>
-            <p>Inténtalo de nuevo</p>
 
             <motion.button type="button" className="btn" onClick={onRepeat}>
               INTENTAR DE NUEVO
