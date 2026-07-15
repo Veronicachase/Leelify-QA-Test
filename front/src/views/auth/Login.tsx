@@ -1,18 +1,29 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
+import { useAuth } from "../../context/AuthContext";
+
 import conejoCelebrando from "../../assets/mascota/conejo-celebrando.png";
 import eyeIcon from "../../assets/icons/eye-icon.svg";
+
 import "./login.css";
 import "../../index.css";
-// pendiente agregar validaciones, pendiente agregar funcionalidad para mostrar contraseña, pendiente agregar animación al botón de submit, pendiente agregar animación al encabezado, pendiente agregar animación al fondo, pendiente agregar un mensaje de error en caso de que el login falle, pendiente agregar un mensaje de éxito en caso de que el login sea exitoso, pendiente agregar un enlace para recuperar contraseña, pendiente agregar un enlace para registrarse.
 
-function Login() {
+export const LoginPage = () => {
+  const { login } = useAuth();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(email, password);
+
+    try {
+      await login(email, password);
+      console.log("Sesión iniciada");
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+      alert("Error al iniciar sesión. Por favor, verifica tus credenciales.");
+    }
   };
 
   return (
@@ -30,12 +41,17 @@ function Login() {
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           <motion.img
-            className="bunny-celebrando "
+            className="bunny-celebrando"
             src={conejoCelebrando}
-            alt="bunny"
+            alt="Conejo celebrando"
             animate={{ y: [0, -6, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
           />
+
           <h1>Iniciar sesión</h1>
         </motion.div>
 
@@ -53,6 +69,7 @@ function Login() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
             whileFocus={{ scale: 1.02 }}
+            required
           />
 
           <div className="password-wrapper">
@@ -63,7 +80,9 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Introduce tu contraseña"
               whileFocus={{ scale: 1.02 }}
+              required
             />
+
             <span className="eye-icon">
               <img src={eyeIcon} alt="Mostrar contraseña" />
             </span>
@@ -76,7 +95,7 @@ function Login() {
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            Login
+            Iniciar sesión
           </motion.button>
         </motion.form>
 
@@ -88,6 +107,7 @@ function Login() {
           <p className="small">
             ¿Olvidaste tu contraseña? <a href="/forgot-password">Restablecer</a>
           </p>
+
           <p className="small">
             ¿No tienes una cuenta? <a href="/register">Registrarse</a>
           </p>
@@ -95,6 +115,6 @@ function Login() {
       </motion.div>
     </div>
   );
-}
+};
 
-export default Login;
+export default LoginPage;

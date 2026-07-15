@@ -4,13 +4,14 @@ import GameLayout from "./layouts/gameLayout";
 import { ImageQuiz } from "./views/games/ImageQuiz";
 import { ChooseBestOption } from "./views/games/ChooseBestOption";
 import { MatchingGame } from "./views/games/MatchingGame";
+import { LoginPage } from "./views/auth/Login";
 
 function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<div>Home</div>} />
-
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/game" element={<GameLayout />}>
           <Route index element={<Navigate to="1" replace />} />
           <Route path="1" element={<OrderingGame />} />
