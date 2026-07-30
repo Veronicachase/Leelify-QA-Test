@@ -1,101 +1,163 @@
-body {
+* {
   margin: 0;
-  font-family: var(--font-main);
-  background: var(--color-bg);
-  color: var(--color-text);
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/*falta limpiar esto y crear el conic con colores más suaves*/
 :root {
-  --color-primary: #63c7a2;
-  --color-primary-light: #a1f4bf;
-  --color-primary-dark: #16a34a;
-  --color-secondary: #06b6d4;
-  --color-accent: #facc15;
-  --color-accent-soft: #fde68a;
-  --color-danger: #ef4444;
-  --color-success: #10b981;
-  --marron: #b7a8a9;
-  --marron-light: #b7a8a995;
-  --marron-radial: linear-gradient(
-    135deg,
-    var(--marron-light) 0%,
-    var(--marron) 100%
-  );
-  /* degradado verde */
+  /* Paleta del home */
+  --ink: #201a38;
+  --muted: #716b83;
+  --purple: #6948d7;
+  --purple-dark: #4b2ca7;
+  --cream: #f8f6f1;
 
-  --background-title-yellow-linear: linear-gradient(
-    135deg,
-    var(--color-accent-soft) 0%,
-    var(--color-accent) 100%
-  );
+  /* Acentos de la home */
+  --home-yellow: #ffcd67;
+  --home-coral: #ffe0d8;
+  --home-blue: #dcecfb;
 
-  --background-green-linear: linear-gradient(
-    135deg,
-    var(--color-primary) 0%,
-    var(--color-primary-light) 100%
+  /* Gradientes de la home */
+  --gradient-home-background:
+    radial-gradient(
+      circle at 5% 20%,
+      rgba(255, 202, 96, 0.15),
+      transparent 22rem
+    ),
+    radial-gradient(
+      circle at 95% 45%,
+      rgba(116, 82, 222, 0.1),
+      transparent 28rem
+    ),
+    var(--cream);
+  --gradient-home-hero: linear-gradient(
+    120deg,
+    #3f287f 0%,
+    #6342bd 58%,
+    #7654d5 100%
   );
+  --gradient-home-progress: linear-gradient(90deg, var(--purple), #a98cf1);
 
-  --background-green-backwards-linear: linear-gradient(
-    135deg,
-    var(--color-primary-light) 0%,
-    var(--color-primary) 100%
-  );
+  /* Colores de marca */
+  --color-primary: #7757e5;
+  --color-primary-light: #a98cff;
+  --color-primary-dark: #5034ac;
 
-  --conic-border: conic-gradient(
-    var(--color-accent) 0%,
-    var(--color-primary) 40%,
-    var(--color-danger) 70%,
-    var(--color-secondary) 100%
-  );
-  /* degradado marrón/rosado suave inspirado en la imagen */
-  --background-brown-linear: linear-gradient(
-    135deg,
-    #d8cbc9 0%,
-    #cbb9b6 50%,
-    #b89f9a 100%
-  );
-  --bg: rgba(255, 255, 255, 0.92);
+  --color-secondary: #35b9d5;
+  --color-secondary-light: #a9e4ef;
+  --color-secondary-dark: #238da9;
 
-  --color-bg: #f3f3f379;
+  /* Colores de juego y recompensas */
+  --color-accent: #ffc947;
+  --color-accent-light: #fff0c4;
+  --color-accent-dark: #d99a15;
+
+  --color-coral: #ff6f61;
+  --color-coral-light: #ffd8d2;
+  --color-coral-dark: #b63d36;
+
+  /* Estados */
+  --color-success: #22a979;
+  --color-danger: #e9505a;
+  --color-warning: #f59e0b;
+  --color-info: #338fca;
+
+  /* Fondos y superficies */
+  --color-background: #f5f2ff;
   --color-surface: #ffffff;
-  --color-surface-soft: #f0fdf4;
-  --color-border: #dbe3ea;
-  --color-text: #1f2937;
-  --color-text-soft: #6b7280;
-  --color-white: #ffffff;
+  --color-surface-soft: #eee9ff;
+  --color-border: #e5dff7;
 
-  --shadow-sm: 0px 2px 2px 0 rgba(0, 0, 0, 0.02);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.12);
+  /* Texto */
+  --color-text: #292140;
+  --color-text-soft: #847b9a;
+  --color-text-muted: #a69fb5;
+  --color-text-on-primary: #ffffff;
 
-  --radius-sm: 10px;
-  --radius-md: 14px;
-  --radius-lg: 22px;
-  --radius-xl: 30px;
+  /* Transparencias */
+  --color-overlay: rgba(41, 33, 64, 0.55);
+  --color-white-transparent: rgba(255, 255, 255, 0.18);
 
-  --space-xs: 4px;
-  --space-sm: 8px;
-  --space-md: 16px;
-  --space-lg: 24px;
-  --space-xl: 32px;
-  --space-2xl: 48px;
+  /* Gradientes */
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--color-primary-light),
+    var(--color-primary-dark)
+  );
 
-  --font-main: "Nunito", "Trebuchet MS", "Verdana", sans-serif;
-  --font-heading: "Nunito", "Trebuchet MS", "Verdana", sans-serif;
-  --font-mono: ui-monospace, Consolas, monospace;
+  --gradient-secondary: linear-gradient(
+    135deg,
+    #42c7dc,
+    var(--color-secondary-dark)
+  );
 
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-md: 1.125rem;
-  --font-size-lg: 1.375rem;
-  --font-size-xl: 1.75rem;
-  --font-size-2xl: 2.25rem;
+  --gradient-coral: linear-gradient(135deg, #ff9467, var(--color-coral-dark));
 
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.3s ease;
+  --gradient-reward: linear-gradient(135deg, #ffdf70, var(--color-accent-dark));
 
+  --gradient-success: linear-gradient(135deg, #4fcaa0, #238b68);
+
+  /* font sizes*/
+  /* Tipografías */
+  --font-primary: "Nunito", Arial, sans-serif;
+  --font-heading: "Fredoka", "Nunito", sans-serif;
+
+  /* Pesos tipográficos */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extra-bold: 800;
+
+  /* Espaciado */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* Bordes redondeados */
+  --radius-small: 8px;
+  --radius-medium: 14px;
+  --radius-large: 20px;
+  --radius-large1: 24px;
+  --radius-xlarge: 28px;
+  --radius-middle: 50px;
+  --radius-round: 999px;
+
+  /* Bordes */
+  --border-default: 1px solid var(--color-border);
+  --border-primary: 2px solid var(--color-primary);
+  --border-secondary: 2px solid var(--color-secondary);
+  --border-accent: 2px solid var(--color-accent);
+  --border-coral: 2px solid var(--color-coral);
+
+  /* Sombras */
+  --shadow-small: 0 2px 6px rgba(80, 52, 172, 0.08);
+  --shadow-medium: 0 8px 20px rgba(80, 52, 172, 0.12);
+  --shadow-large: 0 18px 45px rgba(80, 52, 172, 0.18);
+
+  /* Sombra de botón con volumen */
+  --shadow-button-primary: 0 6px 0 var(--color-primary-dark);
+  --shadow-button-accent: 0 6px 0 var(--color-accent-dark);
+  --shadow-button-coral: 0 6px 0 var(--color-coral-dark);
+
+  /* Transiciones */
+  --transition-fast: 150ms ease;
+  --transition-normal: 220ms ease;
+  --transition-slow: 300ms ease;
+
+  /* Tamaños */
   --container-width: 1200px;
-  --border-1: 1px solid rgba(255, 255, 255, 0.7);
+  --header-height: 76px;
+  --mobile-nav-height: 72px;
+
+  /* Capas */
+  --z-base: 1;
+  --z-header: 20;
+  --z-navigation: 30;
+  --z-modal: 100;
 }

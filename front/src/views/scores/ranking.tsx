@@ -1,1 +1,1 @@
-const ranking = () => {};
+export const Ranking = () => null;

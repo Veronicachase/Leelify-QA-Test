@@ -13,7 +13,7 @@ Galaxy S8 / S9+ → Android alto y estrecho
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  background-color: #f7f7f7;
+  background: radial-gradient(circle at 10% 0%, #e7f6ef 0, transparent 28%), #fffdf7;
   overflow-x: hidden;
   align-items: center;
 }
@@ -26,6 +26,8 @@ Galaxy S8 / S9+ → Android alto y estrecho
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  max-width: 1120px;
+  padding: 22px;
 }
 
 .game-header {
@@ -33,38 +35,48 @@ Galaxy S8 / S9+ → Android alto y estrecho
   display: flex;
   flex-direction: column;
   align-items: center;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  padding: 14px 18px;
+  border: 1px solid #e4ebe5;
+  border-radius: 20px;
+  background: rgba(255,255,255,.88);
+  box-shadow: 0 12px 32px rgba(45,77,67,.07);
 }
 
 .game-menu {
   width: 100%;
   height: 10%;
   color: var(--color-text-soft);
-  background: var(--background-title-yellow-linear);
+  background: transparent;
   text-align: center;
 
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: left;
+  justify-content: flex-start;
 }
+.game-menu h4 { margin: 0; color: #36574d; font-size: 18px; }
 
 .game-level {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 0;
 }
 
 .level-list {
   display: flex;
   gap: 15px;
   padding: 0;
-  margin: 0 0 20px;
+  margin: 0;
   list-style: none;
 }
 
 .level-list li {
-  width: 58px;
-  height: 58px;
+  width: 38px;
+  height: 38px;
 
   display: flex;
   align-items: center;
@@ -84,7 +96,11 @@ Galaxy S8 / S9+ → Android alto y estrecho
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   background-color: var(--color-surface-soft);
+  justify-self: end;
+  color: #3d6759;
+  font-weight: 800;
 }
+.game-score img { width: 22px; }
 
 .active {
   background-color: var(--color-primary);
@@ -103,6 +119,12 @@ Galaxy S8 / S9+ → Android alto y estrecho
   align-items: center;
 
   overflow-x: hidden;
+  margin-top: 22px;
+  padding: 25px;
+  border: 1px solid #e7ece8;
+  border-radius: 24px;
+  background: rgba(255,255,255,.9);
+  box-shadow: 0 18px 50px rgba(45,77,67,.08);
 }
 
 .game-content > * {
@@ -127,7 +149,11 @@ Galaxy S8 / S9+ → Android alto y estrecho
   gap: 5px;
   color: var(--color-text-soft);
   list-style: none;
+  padding: 9px 15px;
+  border-radius: 12px;
+  transition: .2s ease;
 }
+.game-footer li:hover { color: #3e8e71; background: #e9f6f0; }
 
 .game-footer li img {
   width: 30px;
@@ -144,5 +170,6 @@ Galaxy S8 / S9+ → Android alto y estrecho
     width: 100%;
   }
 }
+@media (max-width: 700px) { .game-container { padding: 10px; }.game-header { grid-template-columns: 1fr auto; gap: 12px; }.game-menu { grid-column: 1 / -1; justify-content: center; }.game-level { justify-content: flex-start; }.level-list { gap: 7px; }.level-list li { width: 32px; height: 32px; }.game-score { padding: 6px 12px; font-size: 13px; }.game-content { padding: 12px; }.game-footer { gap: 4px; }.game-footer li { padding: 7px; font-size: 12px; } }
 
 /* corregir en versiones grandes, y eliminar el box shadow derecho*/

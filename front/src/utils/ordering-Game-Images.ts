@@ -5,6 +5,13 @@ import ruedaImg from "../assets/images/rueda.webp";
 import internetImg from "../assets/images/internet.webp";
 import luzImg from "../assets/images/luz.webp";
 
+type ImageItem = {
+  id: string;
+  src: string;
+  alt: string;
+  name: string;
+};
+
 export const images: ImageItem[] = [
   {
     id: "image1",

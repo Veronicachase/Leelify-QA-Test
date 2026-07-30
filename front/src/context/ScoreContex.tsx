@@ -16,7 +16,7 @@ type ScoreProviderProps = {
 
 export const ScoreProvider = ({ children }: ScoreProviderProps) => {
   const [score, setScore] = useState(0);
-  const [completedActivities, setCompletedActivities] = useState<string[]>([]);
+  const [, setCompletedActivities] = useState<string[]>([]);
 
   const addPoints = (points: number) => {
     setScore((prevScore) => prevScore + points);

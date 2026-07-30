@@ -1,16 +1,19 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { OrderingGame } from "./views/games/OrderingGame";
 import GameLayout from "./layouts/gameLayout";
-import { ImageQuiz } from "./views/games/ImageQuiz";
-import { ChooseBestOption } from "./views/games/ChooseBestOption";
-import { MatchingGame } from "./views/games/MatchingGame";
 import { LoginPage } from "./views/auth/Login";
+import { Home } from "./views/home/home";
+import { OrderingGame } from "./views/games/orderingGame/OrderingGame";
+import { ImageQuiz } from "./views/games/imageQuizz/ImageQuiz";
+import { ChooseBestOption } from "./views/games/chooseBestoption/ChooseBestOption";
+import { MatchingGame } from "./views/games/matchingGame/MatchingGame";
+
+import "./App.css";
 
 function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<div>Home</div>} />
+        <Route path="/home" element={<Home />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/game" element={<GameLayout />}>
           <Route index element={<Navigate to="1" replace />} />
@@ -23,5 +26,4 @@ function AppRouter() {
     </BrowserRouter>
   );
 }
-
 export default AppRouter;
