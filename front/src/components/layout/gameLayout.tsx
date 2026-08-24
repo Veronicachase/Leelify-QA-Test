@@ -1,10 +1,10 @@
-import "../styles/gameLayout.css";
+import "./gameLayout.css";
 import { Outlet, useLocation } from "react-router-dom";
-import { useScore } from "../context/ScoreContex";
-import home from "../assets/icons/home.svg";
-import headphones from "../assets/icons/headphones.svg";
-import profile from "../assets/icons/profile.svg";
-import star from "../assets/icons/star.svg";
+import { useScore } from "../../context/ScoreContext";
+import home from "../../assets/icons/home.svg";
+import headphones from "../../assets/icons/headphones.svg";
+import profile from "../../assets/icons/profile.svg";
+import star from "../../assets/icons/star.svg";
 
 export default function GameLayout() {
   const { score } = useScore();

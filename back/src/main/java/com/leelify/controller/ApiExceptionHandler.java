@@ -3,6 +3,7 @@ package com.leelify.controller;
 import com.leelify.exceptions.DuplicateEmailException;
 import com.leelify.exceptions.AudiobookDataAccessException;
 import com.leelify.exceptions.AudiobookNotFoundException;
+import com.leelify.exceptions.AudiobookProgressDataAccessException;
 import com.leelify.service.InvalidCredentialsException;
 import org.springframework.http.HttpStatus;
 import org.slf4j.Logger;
@@ -29,6 +30,15 @@ public class ApiExceptionHandler {
     public Map<String, String> handleAudiobookDataAccess(AudiobookDataAccessException exception) {
         LOGGER.error("Error al consultar el catálogo de audiolibros", exception);
         return Map.of("message", "No se pudo acceder al catálogo de audiolibros");
+    }
+
+    @ExceptionHandler(AudiobookProgressDataAccessException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Map<String, String> handleAudiobookProgressDataAccess(
+            AudiobookProgressDataAccessException exception
+    ) {
+        LOGGER.error("Error al consultar el progreso de audiolibros", exception);
+        return Map.of("message", "No se pudo acceder al progreso del audiolibro");
     }
 
     @ExceptionHandler(DuplicateEmailException.class)

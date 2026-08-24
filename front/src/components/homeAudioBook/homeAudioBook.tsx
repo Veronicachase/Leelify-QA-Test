@@ -30,8 +30,8 @@ export const HomeAudioBook = () => {
           aria-label="Información del audiolibro"
         >
           <motion.span variants={heroContentVariants}>Historia</motion.span>
-          <span variants={heroContentVariants}>10 min</span>
-          <span variants={heroContentVariants}>450 XP</span>
+          <motion.span variants={heroContentVariants}>10 min</motion.span>
+          <motion.span variants={heroContentVariants}>450 XP</motion.span>
         </motion.div>
 
         <motion.button

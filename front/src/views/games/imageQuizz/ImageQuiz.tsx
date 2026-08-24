@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { imagesQuiz, correctAnswer } from "../../../utils/images-quiz";
 import { ModalGames } from "../../../components/common/modalGames";
 import { useNavigate } from "react-router-dom";
-import { useScore } from "../../../context/ScoreContex";
+import { useScore } from "../../../context/ScoreContext";
 import "../../../styles/global.css";
 import "./image-quiz.css";
 

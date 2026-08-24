@@ -6,7 +6,7 @@ import "./orderingGame.css";
 import { images, correctOrder } from "../../../utils/ordering-Game-Images";
 import { BtnsSection } from "../../../components/common/btns";
 import downloadIcon from "../../../assets/icons/downloandIcon.svg";
-import { useScore } from "../../../context/ScoreContex";
+import { useScore } from "../../../context/ScoreContext";
 import Swal from "sweetalert2";
 
 export const OrderingGame = () => {

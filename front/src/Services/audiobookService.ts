@@ -1,6 +1,8 @@
 export interface Audiobook {
   audioId: number;
   title: string;
+  description: string;
+  category: string;
   durationSeconds: number;
   points: number;
   chapters: number;
@@ -8,13 +10,13 @@ export interface Audiobook {
   imageUrl: string;
   audioUrl: string;
   grade: number;
+  featured: boolean;
+  play_count: number;
 }
 
 const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8080";
 
-export const getAudiobooks = async (
-  grade?: number,
-): Promise<Audiobook[]> => {
+export const getAudiobooks = async (grade?: number): Promise<Audiobook[]> => {
   const query = grade === undefined ? "" : `?grade=${grade}`;
   const response = await fetch(`${API_URL}/api/audiobooks${query}`);
 

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import GameLayout from "./layouts/gameLayout";
+import GameLayout from "./components/layout/gameLayout";
 import { LoginPage } from "./views/auth/Login";
 import { Home } from "./views/home/home";
 import { OrderingGame } from "./views/games/orderingGame/OrderingGame";
@@ -13,6 +13,7 @@ function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Navigate to="/home" replace />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/game" element={<GameLayout />}>

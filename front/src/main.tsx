@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import { ScoreProvider } from "./context/ScoreContex.tsx";
+import { ScoreProvider } from "./context/ScoreContext.tsx";
 import App from "./App.tsx";
 import { AuthProvider } from "./context/AuthContext.tsx";
 

@@ -12,11 +12,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+// preguntas, por qué uso repository,
+// por qué se llama datasource
+// para qué uso findMany
 @Repository
 public class AudiobookDAO {
     private static final String SELECT_COLUMNS = """
-            SELECT audio_id, title, duration_seconds, points, chapters,
+            SELECT audio_id, title, description, category, duration_seconds, points, chapters,
                    author, image_url, audio_url, grade
             FROM audiobooks
             """;
@@ -88,6 +90,8 @@ public class AudiobookDAO {
         Audiobook audiobook = new Audiobook();
         audiobook.setAudioId(resultSet.getInt("audio_id"));
         audiobook.setTitle(resultSet.getString("title"));
+        audiobook.setDescription(resultSet.getString("description"));
+        audiobook.setCategory(resultSet.getString("category"));
         audiobook.setDurationSeconds(resultSet.getInt("duration_seconds"));
         audiobook.setPoints(resultSet.getInt("points"));
         audiobook.setChapters(resultSet.getInt("chapters"));
