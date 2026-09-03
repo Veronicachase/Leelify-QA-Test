@@ -1,6 +1,8 @@
+const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8080";
+
 export const login = async (email: string, password: string) => {
   try {
-    const response = await fetch("http://localhost:8080/login", {
+    const response = await fetch(`${API_URL}/api/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,7 +27,7 @@ export const register = async (
   grade: number,
 ) => {
   try {
-    const response = await fetch("http://localhost:8080/register", {
+    const response = await fetch(`${API_URL}/api/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,7 +36,6 @@ export const register = async (
         email,
         name,
         password,
-        role: "user",
         grade,
       }),
     });
@@ -53,7 +54,7 @@ export const register = async (
 
 export const resetPassword = async (email: string, newPassword: string) => {
   try {
-    const response = await fetch("http://localhost:8080/reset-password", {
+    const response = await fetch(`${API_URL}/reset-password`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

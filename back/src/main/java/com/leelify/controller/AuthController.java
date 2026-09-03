@@ -2,7 +2,7 @@ package com.leelify.controller;
 
 import com.leelify.dto.LoginRequest;
 import com.leelify.dto.RegisterRequest;
-import com.leelify.dto.UserResponse;
+import com.leelify.dto.AuthResponse;
 import com.leelify.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -23,12 +23,12 @@ public class AuthController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public UserResponse register(@Valid @RequestBody RegisterRequest request) {
+    public AuthResponse register(@Valid @RequestBody RegisterRequest request) {
         return authService.register(request);
     }
 
     @PostMapping("/login")
-    public UserResponse login(@Valid @RequestBody LoginRequest request) {
+    public AuthResponse login(@Valid @RequestBody LoginRequest request) {
         return authService.login(request);
     }
 }

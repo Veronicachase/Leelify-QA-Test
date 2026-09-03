@@ -8,6 +8,7 @@ import com.leelify.dto.UserResponse;
 import com.leelify.model.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import com.leelify.dto.AuthResponse;
 
 @Service
 public class AuthService {
@@ -15,13 +16,15 @@ public class AuthService {
 
     private final UserDAO userDAO;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
-    public AuthService(UserDAO userDAO, PasswordEncoder passwordEncoder) {
+    public AuthService(UserDAO userDAO, PasswordEncoder passwordEncoder, JwtService jwtService) {
         this.userDAO = userDAO;
         this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
     }
 
-    public UserResponse register(RegisterRequest request) {
+    public AuthResponse register(RegisterRequest request) {
         String normalizedEmail = normalizeEmail(request.email());
 
         if (userDAO.getUserByEmail(normalizedEmail).isPresent()) {
@@ -40,10 +43,10 @@ public class AuthService {
         User savedUser = userDAO.getUserByEmail(normalizedEmail)
                 .orElseThrow(() -> new IllegalStateException("El usuario se guardó, pero no pudo recuperarse"));
 
-        return UserResponse.from(savedUser);
+        return createAuthResponse(savedUser);
     }
 
-    public UserResponse login(LoginRequest request) {
+    public AuthResponse login(LoginRequest request) {
         User user = userDAO.getUserByEmail(normalizeEmail(request.email()))
                 .orElseThrow(InvalidCredentialsException::new);
 
@@ -51,8 +54,18 @@ public class AuthService {
             throw new InvalidCredentialsException();
         }
 
-        return UserResponse.from(user);
+        return createAuthResponse(user);
     }
+    private AuthResponse createAuthResponse(User user) {
+    String token = jwtService.generateToken(user);
+
+        return new AuthResponse(
+            token,
+            "Bearer",
+            jwtService.getExpirationSeconds(),
+            UserResponse.from(user)
+        );
+}
 
     private String normalizeEmail(String email) {
         return email.trim().toLowerCase();
