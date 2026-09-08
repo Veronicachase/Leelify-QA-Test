@@ -1,4 +1,4 @@
-import "./homeAudioBook.css";
+import "./homeHeader.css";
 import { motion } from "framer-motion";
 import conejoLeyendo from "../../assets/mascota/conejo-leyendo-auriculares.png";
 import playIcon from "../../assets/icons/ui/play.svg";
@@ -10,7 +10,7 @@ import {
 
 // Hardcodeado hasta disponer de contenido en la base de datos y Cloudinary.
 
-export const HomeAudioBook = () => {
+export const HomeHeader = () => {
   function handleListen() {
     console.log("escuchando");
   }

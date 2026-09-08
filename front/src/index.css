@@ -131,7 +131,8 @@
   /* Bordes */
   --border-default: 1px solid var(--color-border);
   --border-primary: 2px solid var(--color-primary);
-  --border-secondary: 2px solid var(--color-secondary);
+  --border-primary-light: 2px solid var(--color-primary-light);
+  --border2: 2px solid var(--color-border);
   --border-accent: 2px solid var(--color-accent);
   --border-coral: 2px solid var(--color-coral);
 

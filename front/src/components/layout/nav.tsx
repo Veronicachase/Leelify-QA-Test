@@ -60,6 +60,7 @@ export const Nav = () => {
           </Link>
           <span className="home_nav_item_text"> Audiolibros </span>
         </motion.li>
+
         <motion.li
           variants={itemVariants}
           whileHover={{ y: -4, scale: 1.08 }}
@@ -95,15 +96,18 @@ export const Nav = () => {
             aria-hidden="true"
             className="home_nav_item_icon"
           />
-          <span> 0 pt </span>
+          <Link to="/ranking" aria-label="ir a ranking">
+            <span> 0 pt </span>
+          </Link>
         </motion.li>
+
         <motion.li
           className="home_item_perfil"
           variants={itemVariants}
           whileHover={{ y: -4, scale: 1.08 }}
           whileTap={{ scale: 0.94 }}
         >
-          <Link to="#" aria-label="ir a perfil">
+          <Link to="/perfil" aria-label="ir a perfil">
             <img src={mascota} alt="perfil" />
           </Link>
         </motion.li>

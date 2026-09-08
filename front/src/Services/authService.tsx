@@ -1,3 +1,5 @@
+import type { AuthResponse } from "../types/auth";
+
 const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8080";
 
 export const login = async (email: string, password: string) => {
@@ -12,7 +14,7 @@ export const login = async (email: string, password: string) => {
     if (!response.ok) {
       throw new Error("Login failed");
     }
-    const data = await response.json();
+    const data: AuthResponse = await response.json();
     return data;
   } catch (error) {
     console.error("Error logging in:", error);

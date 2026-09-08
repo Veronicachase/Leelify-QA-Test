@@ -1,15 +1,18 @@
 import "./home.css";
 import { Nav } from "../../components/layout/nav";
-import { HomeAudioBook } from "../../components/homeAudioBook/homeAudioBook";
+import { HomeHeader } from "../../components/home/homeHeader";
+import { Audiobooks } from "../../components/home/audioBooks.tsx";
 
 export const Home = () => {
   return (
     <main className="home">
       <Nav />
       <section>
-        <HomeAudioBook />
+        <HomeHeader />
       </section>
-      <section></section>
+      <section>
+        <Audiobooks />
+      </section>
     </main>
   );
 };

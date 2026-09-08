@@ -1,35 +1,44 @@
-import { useState, type FormEvent } from "react";
+import { useState, type SubmitEvent } from "react";
 import { motion } from "framer-motion";
 import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 import conejoCelebrando from "../../assets/mascota/conejo-celebrando.png";
 import eyeIcon from "../../assets/icons/eye-icon.svg";
 
-import "./login.css";
+import "./login-register.css";
 import "../../index.css";
 
 export const LoginPage = () => {
   const { login } = useAuth();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (isLoading) {
+      return;
+    }
+    setIsLoading(true);
 
     try {
       await login(email, password);
-      console.log("Sesión iniciada");
+      navigate("/home");
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
       alert("Error al iniciar sesión. Por favor, verifica tus credenciales.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="login-page">
+    <div className="main-container">
       <motion.div
-        className="login-container"
+        className="wrapper"
         initial={{ opacity: 0, y: 40, scale: 0.96 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
@@ -56,7 +65,7 @@ export const LoginPage = () => {
         </motion.div>
 
         <motion.form
-          className="login-form"
+          className="form"
           onSubmit={handleSubmit}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -94,8 +103,9 @@ export const LoginPage = () => {
             whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 300 }}
+            disabled={isLoading}
           >
-            Iniciar sesión
+            {isLoading ? "Iniciando sesión..." : "Iniciar sesión"}
           </motion.button>
         </motion.form>
 
