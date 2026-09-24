@@ -67,6 +67,19 @@ public class UserDAO {
         }
     }
 
+    public Optional<User> getUserById(int userId) {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(
+                     "SELECT user_id, name, email, password, role, grade FROM users WHERE user_id = ?")) {
+            statement.setInt(1, userId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                return resultSet.next() ? Optional.of(mapUser(resultSet)) : Optional.empty();
+            }
+        } catch (SQLException exception) {
+            throw new UserDataAccessException("No se pudo buscar el usuario", exception);
+        }
+    }
+
     public boolean updateUser(User user) {
         String sql = """
                 UPDATE users

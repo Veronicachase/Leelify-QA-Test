@@ -73,12 +73,25 @@
   --color-text-soft: #847b9a;
   --color-text-muted: #a69fb5;
   --color-text-on-primary: #ffffff;
+  --color-text-purple: #7757e5;
 
   /* Transparencias */
   --color-overlay: rgba(41, 33, 64, 0.55);
   --color-white-transparent: rgba(255, 255, 255, 0.18);
 
   /* Gradientes */
+
+  --gradient-header: radial-gradient(
+    circle at 78% 75%,
+    transparent 0 70px,
+    var(--color-white-transparent) 71px 72px,
+    transparent 73px 110px,
+    var(--color-white-transparent) 111px 112px,
+    transparent 113px 150px,
+    var(--color-white-transparent) 151px 152px,
+    transparent 153px
+  );
+
   --gradient-primary: linear-gradient(
     135deg,
     var(--color-primary-light),
@@ -98,6 +111,12 @@
   --gradient-success: linear-gradient(135deg, #4fcaa0, #238b68);
 
   /* font sizes*/
+  --font-small: 12px;
+  --font-more-than-small: 14px;
+  --font-basic: 16px;
+  --font-medium: 24px;
+  --font-large: 32px;
+
   /* Tipografías */
   --font-primary: "Nunito", Arial, sans-serif;
   --font-heading: "Fredoka", "Nunito", sans-serif;

@@ -5,22 +5,11 @@
   align-items: center;
   width: min(90%, var(--container-width));
   min-height: 360px;
-  margin: var(--space-6) auto 0;
+  margin: var(--space-6) auto;
   padding: var(--space-7);
   overflow: hidden;
   border-radius: var(--radius-large1);
-  background:
-    radial-gradient(
-      circle at 78% 75%,
-      transparent 0 70px,
-      var(--color-white-transparent) 71px 72px,
-      transparent 73px 110px,
-      var(--color-white-transparent) 111px 112px,
-      transparent 113px 150px,
-      var(--color-white-transparent) 151px 152px,
-      transparent 153px
-    ),
-    var(--gradient-home-hero);
+  background: var(--gradient-header), var(--gradient-home-hero);
   color: var(--color-text-on-primary);
   box-shadow: var(--shadow-large);
 }

@@ -56,6 +56,11 @@ public class AuthService {
 
         return createAuthResponse(user);
     }
+    public AuthResponse refresh(int userId) {
+        return createAuthResponse(userDAO.getUserById(userId)
+                .orElseThrow(InvalidCredentialsException::new));
+    }
+
     private AuthResponse createAuthResponse(User user) {
     String token = jwtService.generateToken(user);
 

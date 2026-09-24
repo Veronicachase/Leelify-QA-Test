@@ -32,7 +32,9 @@ public class SecurityConfig {
                                 .requestMatchers(
                                         HttpMethod.POST,
                                         "/api/auth/register",
-                                        "/api/auth/login"
+                                        "/api/auth/login",
+                                        "/api/auth/refresh",
+                                        "/api/auth/logout"
                                 )
                                 .permitAll()
 

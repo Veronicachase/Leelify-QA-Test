@@ -61,7 +61,7 @@ export const LoginPage = () => {
             }}
           />
 
-          <h1>Iniciar sesión</h1>
+          <h1 className="log-reg-title">Iniciar sesión</h1>
         </motion.div>
 
         <motion.form

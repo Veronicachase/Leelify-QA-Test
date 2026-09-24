@@ -6,8 +6,10 @@ export const login = async (email: string, password: string) => {
   try {
     const response = await fetch(`${API_URL}/api/auth/login`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
+        "X-Leelify-Request": "true",
       },
       body: JSON.stringify({ email, password }),
     });
@@ -20,6 +22,34 @@ export const login = async (email: string, password: string) => {
     console.error("Error logging in:", error);
     throw error;
   }
+};
+
+// Deduplicate restoration requests, including React StrictMode's initial effects.
+let refreshRequest: Promise<AuthResponse | null> | null = null;
+
+export const refreshSession = (): Promise<AuthResponse | null> => {
+  if (!refreshRequest) {
+    refreshRequest = (async () => {
+      const response = await fetch(`${API_URL}/api/auth/refresh`, {
+        method: "POST",
+        credentials: "include",
+        headers: { "X-Leelify-Request": "true" },
+      });
+      if (response.status === 401) return null;
+      if (!response.ok) throw new Error("No se pudo recuperar la sesión");
+      return response.json() as Promise<AuthResponse>;
+    })().finally(() => { refreshRequest = null; });
+  }
+  return refreshRequest;
+};
+
+export const logout = async (): Promise<void> => {
+  const response = await fetch(`${API_URL}/api/auth/logout`, {
+    method: "POST",
+    credentials: "include",
+    headers: { "X-Leelify-Request": "true" },
+  });
+  if (!response.ok) throw new Error("No se pudo cerrar la sesión. Inténtalo de nuevo.");
 };
 
 export const register = async (

@@ -99,14 +99,14 @@ input:focus {
   background: var(--background-green-backwards-linear);
 }
 
-h1,
-p {
+log-reg-title,
+small {
   color: var(--color-text-soft);
   text-align: center;
   margin: 0;
 }
 
-h1 {
+log-reg-title {
   font-size: 2rem;
 }
 

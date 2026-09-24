@@ -47,7 +47,7 @@ export const RegisterPage = () => {
   return (
     <>
       <div className="main-container">
-        <h1 className="title">Regístrate para guardar tu progreso</h1>
+        <h1 className="log-reg-title">Regístrate para guardar tu progreso</h1>
         <motion.div
           className="wrapper"
           initial={{ opacity: 0, y: 40, scale: 0.96 }}

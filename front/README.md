@@ -71,3 +71,26 @@ export default defineConfig([
   },
 ])
 ```
+
+## Catálogo de contenidos
+
+La home consulta `GET /api/contents` al montarse y separa `AUDIOBOOK` y `VIDEO`.
+Por ahora muestra todos los cursos. El destacado usa el primer audiolibro con
+`featured: true`, o el primero disponible si ninguno está destacado.
+
+Configura `VITE_API_URL=http://localhost:8080` en `front/.env` (URL base, sin
+`/api`) y reinicia Vite si cambias esa variable. Arranca el backend con su
+configuración de base de datos y el front con `npm run dev` desde `front`.
+El CORS del backend permite `http://localhost:5173`.
+
+Comprobación manual en `/home`:
+
+- El catálogo debe mostrar los 4 vídeos y 3 audiolibros insertados.
+- Los audios usan la portada, si existe, y controles de reproducción.
+- Los vídeos no usan miniaturas: se reproducen silenciados al entrar en pantalla,
+  con controles para activar sonido; se pausan al salir de pantalla.
+- Al reproducir otro contenido, el anterior se pausa.
+- Si falla la petición aparece «Reintentar»; sin registros, aparecen mensajes de catálogo vacío.
+- Si falla un archivo multimedia se ofrece un enlace para abrirlo.
+
+Estas llamadas solo leen contenidos: aún no guardan progreso ni conceden puntos.
