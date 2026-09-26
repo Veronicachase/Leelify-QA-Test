@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { getContents } from "./../../Services/contentService";
 import { getContentProgress } from "../../Services/getContentProgress";
 import { useAuth } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
   const [contents, setContents] = useState<Content[]>([]);
@@ -60,6 +61,11 @@ export const Home = () => {
       )}
       {error && <p>{error}</p>}
       {destacado && <HomeHeader content={destacado} />}
+
+      <Link to="/audiobooks" id="audiobook-category">
+        SIGUE EXPLORANDO
+      </Link>
+
       <Audiobooks contents={audiobooks} progress={progress} />
     </main>
   );

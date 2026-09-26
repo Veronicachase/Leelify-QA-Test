@@ -8,8 +8,10 @@ import { ChooseBestOption } from "./views/games/chooseBestoption/ChooseBestOptio
 import { MatchingGame } from "./views/games/matchingGame/MatchingGame";
 import { Profile } from "./views/profile/Profile.tsx";
 import { Ranking } from "./views/scores/ranking";
-import "./App.css";
 import { RegisterPage } from "./views/auth/Register";
+import { AllAudiobooks } from "./views/allAudiobooks.tsx";
+import { AllVideos } from "./views/allVideos.tsx";
+import "./App.css";
 
 function AppRouter() {
   return (
@@ -19,6 +21,8 @@ function AppRouter() {
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/audiobooks" element={<AllAudiobooks />} />
+        <Route path="/videos" element={<AllVideos />} />
         <Route path="/perfil" element={<Profile />} />
         <Route path="/ranking" element={<Ranking />} />
         <Route path="/game" element={<GameLayout />}>

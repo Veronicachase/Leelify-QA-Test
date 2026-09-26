@@ -153,7 +153,18 @@
 
   .hero-mascot {
     right: 50%;
-    bottom: calc(var(--space-6) * -1);
-    width: min(76vw, 300px);
+    bottom: 0;
+    width: min(76vw, 200px);
+  }
+  .hero-wrapper {
+    min-height: 500px;
+  }
+  .hero-left-side {
+    width: 100%;
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
   }
 }

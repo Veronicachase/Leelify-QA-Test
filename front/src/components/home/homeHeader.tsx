@@ -1,5 +1,6 @@
 ﻿import "./homeHeader.css";
 import { motion } from "framer-motion";
+import { PlayPause } from "../common/Play-pause";
 import conejoLeyendo from "../../assets/mascota/conejo-leyendo-auriculares.png";
 import {
   heroVariants,
@@ -7,7 +8,6 @@ import {
   heroMascotVariants,
 } from "../../animations/homeAnimations";
 import type { Content } from "../../Services/contentService";
-import { ContentPlayer } from "./contentPlayer";
 
 export const HomeHeader = ({ content }: { content: Content }) => (
   <motion.div className="hero-wrapper" variants={heroVariants}>
@@ -30,7 +30,13 @@ export const HomeHeader = ({ content }: { content: Content }) => (
           {content.points} puntos
         </motion.span>
       </motion.div>
-      <ContentPlayer key={content.contentId} content={content} />
+      <PlayPause
+        key={content.contentId}
+        mediaUrl={content.mediaUrl}
+        mediaType={content.contentType}
+        buttonClassName="hero-listen-button"
+        label="Empezar a escuchar"
+      />
     </div>
     <motion.div className="hero-right-side" variants={heroMascotVariants}>
       <img

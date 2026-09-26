@@ -4,9 +4,15 @@ import { useRef, useState } from "react";
 export const PlayPause = ({
   mediaUrl,
   mediaType,
+  buttonClassName = "audiobook-card-button",
+  label,
+  onProgress,
 }: {
   mediaUrl: string;
   mediaType: "AUDIOBOOK" | "VIDEO";
+  buttonClassName?: string;
+  label?: string;
+  onProgress?: (seconds: number) => void;
 }) => {
   const mediaRef = useRef<HTMLMediaElement | null>(null);
   const [playing, setPlaying] = useState(false);
@@ -31,6 +37,10 @@ export const PlayPause = ({
           ref={(reproductor) => {
             mediaRef.current = reproductor;
           }}
+          onTimeUpdate={(event) => {
+            const seconds = Math.floor(event.currentTarget.currentTime);
+            onProgress?.(seconds);
+          }}
           preload="none"
         />
       ) : (
@@ -44,7 +54,7 @@ export const PlayPause = ({
         />
       )}
       <button
-        className="audiobook-card-button"
+        className={buttonClassName}
         type="button"
         onClick={togglePlay}
         aria-label={playing ? "pausar" : "Reproducir"}
@@ -54,6 +64,7 @@ export const PlayPause = ({
         ) : (
           <Play size={28} color="#7757e5" fill="#ffffff" strokeWidth={2} />
         )}
+        {label && <span>{playing ? "Pausar" : label}</span>}
       </button>
     </>
   );

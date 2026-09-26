@@ -2,6 +2,16 @@
   width: 100%;
 }
 
+.home > #audiobook-category {
+  display: block;
+  width: min(100%, var(--container-width));
+  margin-inline: auto;
+  color: var(--color-text-purple);
+  font-size: var(--font-small);
+  text-align: left;
+  margin-bottom: 20px;
+}
+
 .home-nav {
   width: 100%;
   display: flex;

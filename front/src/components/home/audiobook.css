@@ -34,11 +34,10 @@
   border-bottom: 1px solid var(--color-border);
   margin-bottom: 10px;
 }
-#audio-progress {
-  width: 100%;
-}
-.audiobook-progress-wrapper {
+
+.audiobook-progress-wrapper progress {
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;

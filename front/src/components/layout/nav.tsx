@@ -8,6 +8,7 @@ import mascota from "../../assets/mascota/conejo-celebrando.png";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { menuVariants, itemVariants } from "../../animations/homeAnimations";
+import { Video } from "lucide-react";
 
 export const Nav = () => {
   return (
@@ -49,7 +50,7 @@ export const Nav = () => {
           whileHover={{ y: -4, scale: 1.08 }}
           whileTap={{ scale: 0.94 }}
         >
-          <Link to="#">
+          <Link to="/audiobooks">
             <img
               src={auriculares}
               alt="audios"
@@ -59,6 +60,16 @@ export const Nav = () => {
             />
           </Link>
           <span className="home_nav_item_text"> Audiolibros </span>
+        </motion.li>
+        <motion.li
+          variants={itemVariants}
+          whileHover={{ y: -4, scale: 1.08 }}
+          whileTap={{ scale: 0.94 }}
+        >
+          <Link to="/videos">
+            <Video size={24} aria-hidden="true" />
+            <span className="home_nav_item_text">Vídeos</span>
+          </Link>
         </motion.li>
 
         <motion.li

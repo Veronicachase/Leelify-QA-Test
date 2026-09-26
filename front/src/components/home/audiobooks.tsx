@@ -1,21 +1,21 @@
 ﻿import type { Content } from "../../Services/contentService";
 import type { ContentProgress } from "../../Services/getContentProgress";
 import { PlayPause } from "../common/Play-pause";
+import { motion } from "framer-motion";
 import "./audiobook.css";
 
 export const Audiobooks = ({
   contents,
   progress,
+  title = "Audiolibros con las mejores historias para ti",
 }: {
   contents: Content[];
   progress: ContentProgress[];
+  title?: string;
 }) => {
   return (
-    <div className="audiobook-wrapper">
-      <p className="audiobook-category">SIGUE EXPLORANDO</p>
-      <h2 className="audiobook-title">
-        Audiolibros con las mejores historias para ti
-      </h2>
+    <motion.div className="audiobook-wrapper">
+      <h2 className="audiobook-title">{title}</h2>
 
       <div className="audiobook-card-wrapper">
         {contents.map((audiobook) => {
@@ -25,7 +25,14 @@ export const Audiobooks = ({
           const segundos = encontrado ? encontrado.progressSeconds : 0;
 
           return (
-            <div key={audiobook.contentId} className="audiobook-card">
+            <motion.div
+              key={audiobook.contentId}
+              className="audiobook-card"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              whileHover={{ y: -5 }}
+            >
               <div className="audiobook-image-wrapper">
                 <img
                   className="audiobook-car-image"
@@ -36,10 +43,9 @@ export const Audiobooks = ({
                 />
                 <PlayPause
                   mediaUrl={audiobook.mediaUrl}
-                  mediaType="AUDIOBOOK"
+                  mediaType={audiobook.contentType}
                 />
               </div>
-
               <div className="audiobook-info">
                 <div className="audiobook-category-wrapper">
                   <p className="audiobook-card-category">
@@ -72,11 +78,11 @@ export const Audiobooks = ({
                   />
                 </div>
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>
-    </div>
+    </motion.div>
   );
 };
 // falta agregar la barra de progreso, para ello tengo que
