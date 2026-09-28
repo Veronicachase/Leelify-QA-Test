@@ -2,7 +2,8 @@ import { Nav } from "../components/layout/nav";
 import { useState, useEffect } from "react";
 import type { Content } from "../Services/contentService";
 import { getContents } from "../Services/contentService";
-import { Audiobooks } from "../components/home/audiobooks";
+import { Videos } from "./../components/videos/videos";
+import "../components/videos/videos.css";
 
 export const AllVideos = () => {
   const [allVideos, setAllVideos] = useState<Content[]>([]);
@@ -32,7 +33,7 @@ export const AllVideos = () => {
       {loading ? (
         <p>Cargando... aquí va una ruedita</p>
       ) : (
-        <Audiobooks contents={allVideos} progress={[]} title="Vídeos cortos" />
+        <Videos contents={allVideos} />
       )}
     </main>
   );

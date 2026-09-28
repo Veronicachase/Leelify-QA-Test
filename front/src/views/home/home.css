@@ -181,30 +181,6 @@
   text-decoration: underline;
 }
 
-.video-feed {
-  width: min(100%, 440px);
-  max-height: 85dvh;
-  overflow-y: auto;
-  scroll-snap-type: y proximity;
-  margin-inline: auto;
-  border-radius: var(--radius-large);
-}
-
-.video-card {
-  scroll-snap-align: start;
-  margin-bottom: var(--space-5);
-}
-.video-card:last-child {
-  margin-bottom: 0;
-}
-.video-card video {
-  display: block;
-  width: 100%;
-  height: min(62dvh, 620px);
-  object-fit: contain;
-  background: #000;
-}
-
 .catalog-status button {
   margin-top: var(--space-4);
   padding: var(--space-3) var(--space-5);
