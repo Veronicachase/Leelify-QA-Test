@@ -4,7 +4,9 @@ import { useScore } from "../../context/ScoreContext";
 import home from "../../assets/icons/home.svg";
 import headphones from "../../assets/icons/headphones.svg";
 import profile from "../../assets/icons/profile.svg";
+import { Video } from "lucide-react";
 import star from "../../assets/icons/star.svg";
+import { Link } from "react-router-dom";
 
 export default function GameLayout() {
   const { score } = useScore();
@@ -57,13 +59,25 @@ export default function GameLayout() {
         <div>
           <ol className="game-footer">
             <li>
-              <img src={home} alt="Home" /> Inicio
+              <Link to="/home">
+                <img src={home} alt="Home" /> Inicio
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/audiobooks">
+                <img src={headphones} alt="Audios" /> Audios
+              </Link>
             </li>
             <li>
-              <img src={headphones} alt="Audios" /> Audios
+              <Link to="/videos">
+                <Video size={24} aria-hidden="true" color="#9DC384" />
+              </Link>
             </li>
             <li>
-              <img src={profile} alt="Perfil" /> Perfil
+              <Link to="/perfil">
+                <img src={profile} alt="Perfil" /> Perfil
+              </Link>
             </li>
           </ol>
         </div>
